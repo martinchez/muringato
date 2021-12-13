@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,8 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- download button styling -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -31,50 +34,14 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index.php" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+    
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-          </a>
-          <div class="dropdown-divider"></div>
-          <!-- <a href="#" class="dropdown-item dropdown-footer">See All Messages</a> -->
-        </div>
-      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge"></span>
-        </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header"></span>
           <div class="dropdown-divider"></div>
@@ -172,14 +139,14 @@
             <li class="nav-item">
               <a href="../tables/data.php" class="nav-link ">
                 <i class="nav-icon fas fa-table"></i>
-                <p>Data Tables</p>
+                <p>Tabulated Data</p>
               </a>
             </li>
             <div class="dropdown-divider"></div>
             <li class="nav-item">
               <a href="../tables/jsgrid.php" class="nav-link active">
                 <i class="nav-icon fas fa-table"></i>
-                <p>More Tabulated Data</p>
+                <p>Data Download</p>
               </a>
             </li>
           </li>
@@ -216,12 +183,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>jsGrid</h1>
+            <h1>Downloads</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">jsGrid</li>
             </ol>
           </div>
         </div>
@@ -230,16 +195,62 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">jsGrid</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <div id="jsGrid1"></div>
-        </div>
-        <!-- /.card-body -->
-      </div>
+    <?php 
+      include "../../connection.php";
+    ?>
+
+<div class="container">
+ 
+ <form method='post' action='download.php'>
+  <button type="submit" value='Export' class="btn btn-lg btn-primary" > Download Data</button>
+ 
+  <table border='1'  id="example2" class="table table-bordered table-hover" style='border-collapse:collapse;'>
+  <thead>
+                  <tr>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Water PH</th>
+                    <th>Electrical conductivity</th>
+                    <th>Turbidity</th>
+                    <th>Date & Time</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+    <?php 
+     $query = "SELECT * FROM water_quality ORDER BY id asc";
+     $result = mysqli_query($conn,$query);
+     $user_arr = array();
+     while($row = mysqli_fetch_array($result)){
+      $id = $row['id'];
+      $latitude = $row['latitude'];
+      $longitude = $row['longitude'];
+      $pH = $row['ph'];
+      $EC = $row['ec'];
+      $turbidity = $row['turbidity'];
+      $Date_Time = $row['date& time'];
+      $user_arr[] = array($id,$latitude,$longitude,$pH,$EC,$turbidity,$Date_Time);
+   ?>
+   <tr>
+     <td><?php echo $latitude?></td>
+     <td><?php echo $longitude?></td>
+     <td><?php echo $pH?></td>
+     <td><?php echo $EC?></td>
+     <td><?php echo $turbidity?></td>
+     <td><?php echo $Date_Time?></td>
+   </tr>
+      
+   <?php
+    }
+   ?>
+   <tbody>
+   </table>
+   <?php 
+    $serialize_user_arr = serialize($user_arr);
+   ?>
+  <textarea name='export_data' style='display: none;'><?php echo $serialize_user_arr; ?></textarea>
+ </form>
+</div>
       <!-- /.card -->
     </section>
     <!-- /.content -->
@@ -272,22 +283,18 @@
 <!-- page script -->
 <script>
   $(function () {
-    $("#jsGrid1").jsGrid({
-        height: "100%",
-        width: "100%",
- 
-        sorting: true,
-        paging: true,
- 
-        data: db.clients,
- 
-        fields: [
-            { name: "Name", type: "text", width: 150 },
-            { name: "Age", type: "number", width: 50 },
-            { name: "Address", type: "text", width: 200 },
-            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
-            { name: "Married", type: "checkbox", title: "Is Married" }
-        ]
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
     });
   });
 </script>

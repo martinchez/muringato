@@ -187,14 +187,14 @@
             <li class="nav-item">
               <a href="pages/tables/data.php" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
-                <p>Data Tables</p>
+                <p>Tabulated Data</p>
               </a>
             </li>
             <div class="dropdown-divider"></div>
             <li class="nav-item">
               <a href="pages/tables/jsgrid.php" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
-                <p>More Tabulated Data</p>
+                <p>Data Download</p>
               </a>
             </li>
           </li>
