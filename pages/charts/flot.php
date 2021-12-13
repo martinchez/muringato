@@ -26,7 +26,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -120,7 +120,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="../../index.html" class="nav-link ">
+            <a href="../../index.php" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -130,7 +130,7 @@
           </li>
           <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
-            <a href="../map.html" class="nav-link">
+            <a href="../map.php" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Maps
@@ -140,14 +140,14 @@
           <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
             <li class="nav-item">
-              <a href="../charts/chartjs.html" class="nav-link">
+              <a href="../charts/chartjs.php" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>Data Viaualization</p>
               </a>
             </li>
             <div class="dropdown-divider"></div>
             <li class="nav-item">
-              <a href="../charts/flot.html" class="nav-link active">
+              <a href="../charts/flot.php" class="nav-link active">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>Real Time Data</p>
               </a>
@@ -155,7 +155,7 @@
           </li>
           <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
-            <a href="../UI/timeline.html" class="nav-link">
+            <a href="../UI/timeline.php" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Project Timeline
@@ -165,14 +165,14 @@
           <div class="dropdown-divider"></div>
           <li class="nav-item has-treeview">
             <li class="nav-item">
-              <a href="../tables/data.html" class="nav-link">
+              <a href="../tables/data.php" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
                 <p>Data Tables</p>
               </a>
             </li>
             <div class="dropdown-divider"></div>
             <li class="nav-item">
-              <a href="../tables/jsgrid.html" class="nav-link">
+              <a href="../tables/jsgrid.php" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
                 <p>More Tabulated Data</p>
               </a>
@@ -180,7 +180,7 @@
           </li>
           <div class="dropdown-divider"></div>
           <li class="nav-item">
-            <a href="../calendar.html" class="nav-link">
+            <a href="../calendar.php" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Calendar
@@ -190,7 +190,7 @@
           </li>
           <div class="dropdown-divider"></div>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="pages/gallery.php" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery
